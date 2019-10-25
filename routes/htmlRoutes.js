@@ -3,7 +3,7 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.Review.find({ saved: false }).
+    db.Review.find({}).
     then(function(dbReview) {
       res.render("index", {
         reviews: dbReview,

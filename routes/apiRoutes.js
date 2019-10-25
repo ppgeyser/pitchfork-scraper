@@ -36,7 +36,7 @@ module.exports = function (app) {
                     .children("div")
                     .children("img")
                     .attr("src")
-                result.link = ("pitchfork.com" + $(this)
+                result.link = ("https://pitchfork.com" + $(this)
                     .attr("href"))
 
                 console.log("result", result);
