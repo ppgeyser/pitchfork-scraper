@@ -8,7 +8,7 @@ var cheerio = require("cheerio");
 // Require all models
 var db = require("./models");
 
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
 
 // Initialize Express
 var app = express();
@@ -40,28 +40,49 @@ mongoose.connect(MONGODB_URI, {
 app.get("/scrape", function (req, res) {
 
     //Grab html body using axios
-    axios.get("http://pitchfork.com/").then(function (response) {
+    axios.get("https://pitchfork.com/reviews/albums/?page=1").then(function (response) {
 
         //Data saved to cheerio and saved to $ as a shortcut
         var $ = cheerio.load(response.data);
 
         //Grab all <a> tags
+        $("div[class=review] a").each(function(i, element) {
 
-        // Save an empty result object
-        var result = {};
+            // Save an empty result object
+            var result = {};
+    
+            //Add Album name, Artist, ImageURL, and href and save them as properties of results object
+            result.artist = $(this)
+                .children("div.review__title")
+                .children("ul")
+                .children("li")
+                .text();
+            result.album = $(this)
+                .children("div.review__title")
+                .children("h2")
+                .text();
+            result.img = $(this)
+                .children("div.review__artwork")
+                .children("div")
+                .children("img")
+                .attr("src")
+            result.link = ("pitchfork.com" + $(this)
+                .attr("href"))
+    
+            console.log("result", result);
 
-        //Add Album name, Artist, ImageURL, and href and save them as properties of results object
-
-        //Create new review in db using result object
-        db.Review.create(result)
-            .then(function (dbReview) {
-                // View the added result in the console
-                console.log(dbReview);
-            })
-            .catch(function (err) {
-                // If an error occurred, log it
-                console.log(err);
-            });
+            //Create new review in db using result object
+            db.Review.create(result)
+                .then(function (dbReview) {
+                    // View the added result in the console
+                    console.log(dbReview);
+                })
+                .catch(function (err) {
+                    // If an error occurred, log it
+                    console.log(err);
+                });
+        
+        });
 
         // Send a message to the client
         res.send("Scrape Complete");
