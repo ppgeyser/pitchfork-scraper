@@ -3,7 +3,7 @@
   <p class="lead">Check out all of the latest Pitchfork album reviews, and leave comments for each review!</p>
   <hr class="my-4">
   <p>Scrape new articles!</p>
-  <a class="btn btn-primary btn-lg" href="#" role="button">Scrape</a>
+  <a class="btn btn-primary btn-lg" id="btn-scrape" href="#" role="button">Scrape</a>
 </div>
 
 <div class="card">
@@ -27,11 +27,11 @@
                             <div class="form-group">
                                 <input type="text" class="form-control" id="inputComment" placeholder="Add your comment">
                             </div>
-                            <span><button type="submit" class="btn btn-primary">Submit</button></span>
+                            <button type="submit" class="btn btn-primary" id="btn-comment" parentReviewID="{{this._id}}">Submit</button>
                         </form>
                         <br>
                         <p class="card-text">Comments</p>
-                        <div id="comments"></div>
+                        <div class="comments" parentReviewID="{{this._id}}"></div>
                     </div>
                 </div>
             </div>
