@@ -27,15 +27,9 @@ var ReviewSchema = new Schema({
       unique: true
     },
     // This allows us to populate the Review with an associated Note
-    note: {
+    comment: {
       type: Schema.Types.ObjectId,
-      ref: "Note"
-    },
-    // This ensures that any review that is saved doesn't not get dropped from the database
-    saved: {
-        type: Boolean,
-        required: true,
-        default: false
+      ref: "Comment"
     }
     
   });

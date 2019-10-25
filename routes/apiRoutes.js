@@ -60,14 +60,14 @@ module.exports = function (app) {
         });
     });
 
-    // Route for grabbing a specific Review by id, populate it with it's note
+    // Route for grabbing a specific Review by id, populate it with it's comments
     app.get("/reviews/:id", function (req, res) {
         // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
         db.Review.findOne({
                 _id: req.params.id
             })
-            // ..and populate all of the notes associated with it
-            .populate("note")
+            // ..and populate all of the comments associated with it
+            .populate("comment")
             .then(function (dbReview) {
                 // If we were able to successfully find an Review with the given id, send it back to the client
                 res.json(dbReview);
@@ -92,18 +92,18 @@ module.exports = function (app) {
             });
     });
 
-    // Route for saving/updating an Review's associated Note
+    // Route for saving/updating an Review's associated Comment
     app.post("/review/:id", function (req, res) {
-        // Create a new note and pass the req.body to the entry
-        db.Note.create(req.body)
-            .then(function (dbNote) {
-                // If a Note was created successfully, find one Review with an `_id` equal to `req.params.id`. Update the Review to be associated with the new Note
+        // Create a new comment and pass the req.body to the entry
+        db.Comment.create(req.body)
+            .then(function (dbComment) {
+                // If a Comment was created successfully, find one Review with an `_id` equal to `req.params.id`. Update the Review to be associated with the new Comment
                 // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
                 // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
                 return db.Review.findOneAndUpdate({
                     _id: req.params.id
                 }, {
-                    note: dbNote._id
+                    comment: dbComment._id
                 }, {
                     new: true
                 });
