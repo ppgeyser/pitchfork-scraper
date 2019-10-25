@@ -4,7 +4,7 @@ var logger = require("morgan");
 var mongoose = require("mongoose");
 
 // Require all models
-// var db = require("./models");
+var db = require("./models");
 
 var PORT = process.env.PORT || 3000;
 
@@ -36,7 +36,7 @@ mongoose.connect(MONGODB_URI, {
 
 // Routes
 require("./routes/apiRoutes")(app);
-// require("./routes/htmlRoutes")(app);
+require("./routes/htmlRoutes")(app);
 
 // Start the server
 app.listen(PORT, function () {
