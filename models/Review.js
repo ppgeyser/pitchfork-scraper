@@ -22,7 +22,9 @@ var ReviewSchema = new Schema({
     // link to review is required and of type String
     link: {
       type: String,
-      required: true
+      required: true,
+      // This ensures that we do not scrape and save duplicates
+      unique: true
     },
     // This allows us to populate the Review with an associated Note
     note: {
@@ -34,9 +36,7 @@ var ReviewSchema = new Schema({
         type: Boolean,
         required: true,
         default: false
-    },
-    // This ensures that we do not scrape and save duplicates
-    unique: true
+    }
     
   });
   
