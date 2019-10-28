@@ -1,33 +1,33 @@
-<div class="jumbotron">
-  <h1 class="display-4">Pitchfork Album Review Scraper</h1>
-  <p class="lead">Check out all of the latest Pitchfork album reviews, and leave comments for each review!</p>
-  <hr class="my-4">
-  <p>Scrape new articles!</p>
-  <a class="btn btn-primary btn-lg" id="btn-scrape" href="#" role="button">Scrape</a>
-</div>
-
-<div class="card">
-  <div class="card-header">
-    Album Reviews
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-4">Pitchfork Album Review Scraper</h1>
+    <p class="lead">Check out all of the latest Pitchfork album reviews, and leave comments for each review!</p>
+    <hr class="my-4">
+    <p>Scrape new articles!</p>
+    <a class="btn btn-primary btn-lg" id="btn-scrape" href="#" role="button">Scrape</a>
   </div>
-  <div class="card-body" id="reviews">
-    {{#each reviews}}
-        <div class="card">
-            <div class="row">
-                <div class="col-md-2">
-                    <div class="card-body">
-                        <img src="{{this.img}}" class="card-img" alt="Album art" style="max-width: 160px;">
-                    </div>
-                </div>
-                <div class="col-md-10">
-                    <div class="card-body">
-                        <a href="{{this.link}}" target="_blank"><h3 class="card-title">{{this.album}} - {{this.artist}}</h3></a>
-                        <a href="reviews/{{this.id}}" target="_blank">Comments</a>
-                    </div>
-                </div>
+
+  <div class="card">
+    <div class="card-header">
+      Album Reviews
+    </div>
+    <div class="card-body" id="reviews">
+      {{#each reviews}}
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                  <div class="col-2">
+                          <img src="{{this.img}}" class="card-img" alt="Album art" style="max-width: 160px;">
+                  </div>
+                  <div class="col-10">
+                          <a href="{{this.link}}" target="_blank"><h3 class="card-title">{{this.album}} - {{this.artist}}</h3></a>
+                          <a href="reviews/{{this.id}}" target="_blank">Comments</a>
+                  </div>
+              </div>
             </div>
-        </div>
-    {{/each}}
+          </div>
+      {{/each}}
+    </div>
   </div>
 </div>
 
