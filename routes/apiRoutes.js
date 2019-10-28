@@ -98,15 +98,17 @@ module.exports = function (app) {
         db.Comment.create(req.body)
             .then(function (dbComment) {
                 // If a Comment was created successfully, find one Review with an `_id` equal to `req.params.id`. Update the Review to be associated with the new Comment
-                // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
                 // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
                 return db.Review.findOneAndUpdate({
                     _id: req.params.id
-                }, {
-                    comment: dbComment._id
-                }, {
-                    new: true
-                });
+                },
+                { $push: 
+                    {
+                        comment: dbComment._id
+                    }
+                },
+                { new: true }
+                );
             })
             .then(function (dbReview) {
                 // If we were able to successfully update an Review, send it back to the client
