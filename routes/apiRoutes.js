@@ -7,7 +7,7 @@ var db = require("../models");
 
 module.exports = function (app) {
     // A GET route for scraping pitchfork website
-    app.get("/scrape", function (req, res) {
+    app.get("/api/scrape", function (req, res) {
 
         //Grab html body using axios
         axios.get("https://pitchfork.com/reviews/albums/?page=1").then(function (response) {
@@ -61,7 +61,7 @@ module.exports = function (app) {
     });
 
     // Route for grabbing a specific Review by id, populate it with it's comments
-    app.get("/reviews/:id", function (req, res) {
+    app.get("/api/reviews/:id", function (req, res) {
         // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
         db.Review.findOne({
                 _id: req.params.id
@@ -79,7 +79,7 @@ module.exports = function (app) {
     });
 
     // Route for getting all reviews from the db
-    app.get("/reviews", function (req, res) {
+    app.get("/api/reviews", function (req, res) {
         // Grab every document in the Reviews collection
         db.Review.find({})
             .then(function (dbReview) {
@@ -93,7 +93,7 @@ module.exports = function (app) {
     });
 
     // Route for saving/updating an Review's associated Comment
-    app.post("/review/:id", function (req, res) {
+    app.post("/api/review/:id", function (req, res) {
         // Create a new comment and pass the req.body to the entry
         db.Comment.create(req.body)
             .then(function (dbComment) {
