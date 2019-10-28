@@ -1,1 +1,47 @@
-{{review.comment.body}}
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Review
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-2">
+                    <img src="{{review.img}}" class="card-img" alt="Album art" style="max-width: 160px;">
+                </div>
+                <div class="col-10">
+                    <a href="{{review.link}}" target="_blank">
+                        <h3 class="card-title">{{review.album}} - {{review.artist}}</h3>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+     <div class="card">
+        <div class="card-header">
+            Comments
+        </div>
+        <div class="card-body">
+            
+            <ul>
+                {{#each review.comment}}
+
+                <li>{{this.body}}</li>
+
+                {{/each}}
+            </ul>
+
+            <hr class="my-4">
+
+            <form>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="inputComment" placeholder="Add your comment">
+                </div>
+                <button type="submit" class="btn btn-primary" id="btn-comment"
+                    reviewID="{{review._id}}">Submit</button>
+            </form>
+
+        </div>
+    </div>
+</div>
