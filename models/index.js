@@ -2,6 +2,6 @@
 
 module.exports = {
     Review: require("./Review"),
-    Note: require("./Comment")
+    Comment: require("./Comment")
   };
   
