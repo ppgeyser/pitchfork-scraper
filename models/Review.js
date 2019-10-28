@@ -27,10 +27,10 @@ var ReviewSchema = new Schema({
       unique: true
     },
     // This allows us to populate the Review with an associated Note
-    comment: {
+    comment: [{
       type: Schema.Types.ObjectId,
       ref: "Comment"
-    }
+    }]
     
   });
   
