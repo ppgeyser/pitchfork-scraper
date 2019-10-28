@@ -14,24 +14,15 @@
     {{#each reviews}}
         <div class="card">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <div class="card-body">
-                        <a href="{{this.link}}"><h3 class="card-title">{{this.album}}</h3>
-                        {{this.artist}}</a>
-                        <img src="{{this.img}}" class="card-img" alt="Album art" style="max-width: 320px;">
+                        <img src="{{this.img}}" class="card-img" alt="Album art" style="max-width: 160px;">
                     </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-10">
                     <div class="card-body">
-                       <form class="mt-auto">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="inputComment" placeholder="Add your comment">
-                            </div>
-                            <button type="submit" class="btn btn-primary" id="btn-comment" parentReviewID="{{this._id}}">Submit</button>
-                        </form>
-                        <br>
-                        <p class="card-text">Comments</p>
-                        <div class="comments" parentReviewID="{{this._id}}"></div>
+                        <a href="{{this.link}}" target="_blank"><h3 class="card-title">{{this.album}} - {{this.artist}}</h3></a>
+                        <a href="reviews/{{this.id}}" target="_blank">Comments</a>
                     </div>
                 </div>
             </div>
