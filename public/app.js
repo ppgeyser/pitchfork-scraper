@@ -41,3 +41,22 @@ var API = {
         })
     }
 }
+
+var handleScrape = function(event) {
+    event.preventDefault();
+    alert("I've been clicked!");
+}
+
+var handleDeleteComment = function(event) {
+    event.preventDefault();
+    alert("I've been clicked!");
+}
+
+var handleAddComment = function(event) {
+    event.preventDefault();
+    alert("I've been clicked!");
+}
+
+$(document).on("click", "#btn-scrape", handleScrape);
+$(document).on("click", ".btn-comment-delete", handleDeleteComment);
+$(document).on("click", "#btn-comment-submit", handleAddComment);
