@@ -39,8 +39,6 @@ module.exports = function (app) {
                 result.link = ("https://pitchfork.com" + $(this)
                     .attr("href"))
 
-                console.log("result", result);
-
                 //Create new review in db using result object
                 db.Review.create(result)
                     .then(function (dbReview) {
@@ -92,7 +90,7 @@ module.exports = function (app) {
             });
     });
 
-    // Route for saving/updating an Review's associated Comment
+    // Route for saving/updating a Review's associated Comment
     app.post("/api/review/:id", function (req, res) {
         // Create a new comment and pass the req.body to the entry
         db.Comment.create(req.body)
@@ -119,4 +117,12 @@ module.exports = function (app) {
                 res.json(err);
             });
     });
+
+    // Delete a comment by id
+    app.delete("api/comments/:id", function (req, res) {
+        db.Comment.findByIdAndDelete(req.params.id).then(function (dbComment) {
+            res.json(dbComment);
+        })
+    })
+
 }
