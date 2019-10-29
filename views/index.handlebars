@@ -12,6 +12,10 @@
       Album Reviews
     </div>
     <div class="card-body" id="reviews">
+      {{#unless reviews}}
+      Press the "Scrape" button to get the latest reviews!
+      {{/unless}}
+
       {{#each reviews}}
           <div class="card">
             <div class="card-body">

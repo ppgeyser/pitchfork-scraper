@@ -24,7 +24,12 @@
         </div>
         <div class="card-body">
             
+            {{#unless review.comment}}
+            Be the first to add a comment!
+            {{/unless}}
+
             <ul>
+
                 {{#each review.comment}}
 
                 <li>{{this.body}}</li>
