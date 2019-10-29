@@ -22,7 +22,7 @@
         <div class="card-header">
             Comments
         </div>
-        <div class="card-body">
+        <div class="card-body" id="comments">
             
             {{#unless review.comment}}
             Be the first to add a comment!
@@ -32,7 +32,7 @@
 
                 {{#each review.comment}}
 
-                <li>{{this.body}}</li>
+                <li>{{this.body}}<a href="#" commentID="this._id" class="float-right btn-delete-comment">x</a></li>
 
                 {{/each}}
             </ul>
@@ -43,10 +43,14 @@
                 <div class="form-group">
                     <input type="text" class="form-control" id="inputComment" placeholder="Add your comment">
                 </div>
-                <button type="submit" class="btn btn-primary" id="btn-comment"
+                <button type="submit" class="btn btn-primary" id="btn-comment-submit"
                     reviewID="{{review._id}}">Submit</button>
             </form>
 
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="../public/app.js"></script>
