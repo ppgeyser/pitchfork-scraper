@@ -92,7 +92,7 @@ module.exports = function (app) {
     });
 
     // Route for saving/updating a Review's associated Comment
-    app.post("/api/review/:id", function (req, res) {
+    app.post("/api/reviews/:id", function (req, res) {
         // Create a new comment and pass the req.body to the entry
         db.Comment.create(req.body)
             .then(function (dbComment) {
@@ -120,8 +120,8 @@ module.exports = function (app) {
     });
 
     // Delete a comment by id
-    app.delete("api/comments/:id", function (req, res) {
-        db.Comment.findByIdAndDelete(req.params.id).then(function (dbComment) {
+    app.delete("/api/comments/:id", function (req, res) {
+        db.Comment.findOneAndDelete({ _id: req.params.id }).then(function (dbComment) {
             res.json(dbComment);
         })
     })

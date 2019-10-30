@@ -18,19 +18,13 @@ var API = {
             type: "GET"
         })
     },
-    getComments: function(id) {
-        return $.ajax({
-            type: "GET",
-            url: "/api/reviews/" + id
-        })
-    },
-    saveComment: function(comment) {
+    saveComment: function(id, comment) {
         return $.ajax({
             headers: {
                 "Content-Type": "application/json"
             },
             type: "POST",
-            url: "api/reviews/:id",
+            url: "/api/reviews/" + id,
             data: JSON.stringify(comment)
         })
     },
@@ -38,9 +32,9 @@ var API = {
         return $.ajax({
             url: "/api/comments/" + id,
             type: "DELETE"
-        })
+        });
     }
-}
+};
 
 var handleScrape = function(event) {
     event.preventDefault();
@@ -54,7 +48,12 @@ var handleScrape = function(event) {
 
 var handleDeleteComment = function(event) {
     event.preventDefault();
-    alert("I've been clicked!");
+    var idToDelete = $(this).attr("data-id");
+    console.log("idToDelete: " + idToDelete);
+    
+    API.deleteComment(idToDelete).then(function() {
+        location.reload();
+    });
 }
 
 var handleAddComment = function(event) {
