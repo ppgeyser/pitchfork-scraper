@@ -48,7 +48,7 @@ var handleScrape = function(event) {
 
 var handleDeleteComment = function(event) {
     event.preventDefault();
-    var idToDelete = $(this).attr("data-id");
+    var idToDelete = $(this).attr("commentID");
     console.log("idToDelete: " + idToDelete);
     
     API.deleteComment(idToDelete).then(function() {
@@ -58,7 +58,15 @@ var handleDeleteComment = function(event) {
 
 var handleAddComment = function(event) {
     event.preventDefault();
-    alert("I've been clicked!");
+
+    var comment = {
+        body: $("#input-comment").val().trim()
+    }
+    var id = $("#btn-comment-submit").attr("reviewID");
+
+    API.saveComment(id, comment).then(function() {
+        location.reload();
+    })
 }
 
 $(document).on("click", "#btn-scrape", handleScrape);

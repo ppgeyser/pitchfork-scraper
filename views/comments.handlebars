@@ -32,7 +32,7 @@
 
                 {{#each review.comment}}
 
-                <li>{{this.body}}<a href="" data-id={{this._id}} class="float-right btn-comment-delete">x</a></li>
+                <li>{{this.body}}<a href="" commentID={{this._id}} class="float-right btn-comment-delete">x</a></li>
 
                 {{/each}}
             </ul>
@@ -41,7 +41,7 @@
 
             <form>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="inputComment" placeholder="Add your comment">
+                    <input type="text" class="form-control" id="input-comment" placeholder="Add your comment">
                 </div>
                 <button type="submit" class="btn btn-primary" id="btn-comment-submit"
                     reviewID="{{review._id}}">Submit</button>
