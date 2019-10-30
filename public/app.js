@@ -44,7 +44,12 @@ var API = {
 
 var handleScrape = function(event) {
     event.preventDefault();
-    alert("I've been clicked!");
+    
+    API.scrapeReviews().then(function() {
+        API.getReviews().then(function() {
+            location.reload();
+        })
+    });
 }
 
 var handleDeleteComment = function(event) {

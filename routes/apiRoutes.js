@@ -42,7 +42,7 @@ module.exports = function (app) {
                 //Create new review in db using result object
                 db.Review.create(result)
                     .then(function (dbReview) {
-                        // View the added result in the console
+                        // Send reviews as response
                         console.log(dbReview);
                     })
                     .catch(function (err) {
@@ -56,6 +56,7 @@ module.exports = function (app) {
             res.send("Scrape Complete");
 
         });
+
     });
 
     // Route for grabbing a specific Review by id, populate it with it's comments
